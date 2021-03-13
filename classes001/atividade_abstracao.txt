@@ -1,0 +1,40 @@
+Escreva as seguintes classes em Python:
+
+Classe Quadrado:
+1. Possui o atributo de instância lado.
+2. Possui o atributo de classe diag = 1.41. (Representa √2)
+3. Possui os métodos de instância obter_area() e obter_perimetro() e 
+obter_diagonal(), que retornam os valores das respectivas contas.
+4. Possui o método de classe atualizar_diag(novo_valor), para atualizar 
+o atributo de classe diag com o novo_valor.
+
+Lembrando que:
+Área do Quadrado = lado x lado
+Perímetro do Quadrado = lado x 4
+Diagonal do Quadrado = lado x diag
+
+Classe Circulo:
+1. Possui o atributo de instância raio.
+2. Possui o atributo de classe pi = 3.14.
+3. Possui os métodos de instância obter_area() e obter_circunferencia(),
+que retornam, respectivamente, os valores de área e circunferência.
+4. Possui o método de classe atualizar_pi(novo_valor), para atualizar o
+atributo de classe pi com o novo_valor.
+Lembrando que:
+Área do Círculo: pi x raio²
+Circunferência do Círculo: 2 x pi x raio
+
+Módulo GeometriaMain:
+É o módulo que vai possuir a função main e iniciar o programa.
+1Q. Crie pelo menos um objeto Quadrado, passando o lado como parâmetro.
+2Q. Chame os métodos criados em Quadrado para imprimir os valores de área, 
+perímetro e diagonal do objeto.
+3Q. Em seguida, chame o método de classe atualizar_diag() e passe como 
+parâmetro o valor de sqrt(2) do módulo math.
+4Q. Imprima novamente o valor da diagonal.
+
+1C. Crie pelo menos um objeto Circulo, passando o raio como parâmetro.
+2C. Imprima os valores de área e circunferência do objeto antes de atualizar pi.
+3C. Em seguida, chame o método de classe atualizar_pi() e passe como parâmetro o 
+valor de pi do módulo math.
+4C. Imprima novamente os valores de área e circunferência.

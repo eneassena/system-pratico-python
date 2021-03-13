@@ -1,0 +1,97 @@
+Escreva o seguinte programa em Python.
+Classe Localidade
+
+É um @dataclass. Possui apenas o inicializador com três atributos: nome, sigla e taxa_aeroporto.
+Neste arquivo, outros 5 @dataclass são criados, todos herdando de Localidade:
+Dataclass SSA, passando para o init da superclasse o nome “Salvador”, a sigla “SSA” e a taxa de 160,00.
+Dataclass FEN, com os valores: F. Noronha, FEN e 180,00.
+Dataclass MIA, com os valores: Miami, MIA e 200,00.
+Dataclass BER, com os valores: Berlim, BER e 220,00.
+Dataclass SYD, com os valores: Sydney, SYD e 240,00.
+Dataclass DXB, com os valores: Dubai, DXB e 300,00.
+
+
+Classe Voo
+O inicializador possui os parâmetros origem, destino e escala. Escala é um parâmetro especial,
+que pode receber de 0 a N localidades. Dentro do init, os atributos de origem, destino e escala
+são inicializados. Por fim, possui o atributo num_voo e um valor diferente é gerado para cada
+objeto criado. Há várias formas de se gerar os números dos vôos. Exemplos:
+1) Utilizar um atributo de classe como contador e aumentá-lo a cada instância;
+
+2) Criar um atributo de classe que represente uma lista de números dos vôos; dentro do init,
+gerar um número aleatório com random e verificar na lista se já existe algum vôo com esse número.
+Possui o método get_taxa(). Ele retorna a soma das taxas de todos os aeroportos que o vôo vai
+passar. Portanto, retorna a soma das taxas do aeroporto de origem, de destino e das escalas (caso hajam).
+Possui o método get_info_voo(). Ele retorna as informações do vôo em uma String: número do vôo,
+nome do local de origem, destino e escala (se tiver). Caso haja mais uma escala, as localidades
+devem ser separadas por vírgula. Exemplo:
+Nº Vôo: 400
+Origem: Miami | Destino: Sydney | Escala: Berlim, Dubai
+
+Classe Reserva
+O inicializador possui os parâmetros vôo e classe. O valor default (padrão) da classe é ‘X’
+(de executivo). Dentro do init, há o atributo num_reserva, que também gera um número diferente
+para cada objeto criado.
+Possui o método get_preco_final(). Ele retorna o valor de get_taxa(), de Voo, e acrescenta
+200,00 caso a classe seja ‘X’ (maiúsculo).
+Possui o método get_info_reserva(). Ele retorna as informações da reserva em uma String:
+dados do vôo (pegar de get_info_voo()), além dos dados da classe escolhida e o preço final
+(pegar de get_preco_final()).
+
+Classe Agencia
+O init recebe apenas nome como parâmetro. Mas dentro dele, ainda há uma lista inicialmente
+vazia, representando as reservas realizadas.
+Possui o método realizar_reserva(). O método recebe uma reserva como parâmetro e a adiciona
+na lista. Por fim, retorna o número gerado da reserva.
+Possui o método buscar_reserva(). O método recebe um número como parâmetro e verifica se há
+alguma reserva na lista com aquele número. Caso positivo, retorna as informações daquela
+reserva (chamando get_info_reserva()). Caso contrário, retorna uma String informando que
+a reserva não foi encontrada.
+
+Classe Gerenciador
+Possui um atributo de classe privado chamado instancia, inicializando com None.
+Possui o método estático get_instance(). Esse método verifica se instancia está nulo.
+Se estiver, cria um novo objeto Gerenciador e atribui a instancia. Ao final, instancia
+é retornado.
+O init não possui parâmetros a serem inicializados. No entanto, dentro dele, alguns
+objetos são criados:
+ag: objeto do tipo Agencia, que recebe um nome de sua escolha.
+voo1: representa o trajeto direto entre SSA e BER.
+voo2: representa o trajeto entre SSA e BER, com escala em FEN.
+voo3: representa o trajeto direto entre MIA e SYD.
+voo4: representa o trajeto entre MIA e SYD, com escala em BER e DXB.
+Dica para os parâmetros dos objetos voo: use os dataclasses criados.
+voos_disponiveis: é uma lista com os 4 vôos acima.
+
+Possui o método reservar(), que recebe os parâmetros voo e classe. Esse método apenas
+chama e retorna o método realizar_reserva() de Agencia, passando como parâmetro um objeto
+Reserva. Para criar o objeto reserva, são usados os parâmetros voo e classe. Obs.: o
+parâmetro voo virá como um int (a opção digitada pelo usuário no menu), então é necessário
+buscar em voos_disponiveis o vôo correspondente à opção digitada.
+Possui o método obter_dados_reserva(), que recebe um número de reserva como parâmetro.
+Esse método apenas chama e retorna o método buscar_reserva(), de Agencia, passando o
+número de reserva a ser procurado.
+
+Módulo Main
+Possui instância única de Gerenciador.
+Quando o programa é executado, um menu com 3 opções é exibido:
+    1)	Reservar vôo
+    2)	Ver dados da reserva
+    3)	Sair
+
+Selecionando a opção 1, o programa pede para o usuário escolher um dos vôos:
+    1)	SSA-BER (direto)
+    2)	SSA-BER (escala em FEN)
+    3)	MIA-SYD (direto)
+    4)	MIA-SYD (escala em BER e DXB)
+
+Em seguida, pede para o usuário informar em qual classe deseja viajar:
+X - Classe executiva
+Outra tecla - Classe econômica
+As informações de vôo e classe obtidas são passadas para o método reservar(),
+do Gerenciador. Como retorno, o número da reserva deve ser exibido.
+Selecionando a opção 2, o programa pede para o usuário informar qual é o
+número da reserva. O número é passado para o método obter_dados_reserva(),
+do Gerenciador. As informações daquela reserva são exibidas no console, caso existam.
+Após as ações de 1 ou 2 serem concluídas, o programa volta para o menu inicial.
+O programa é encerrado somente quando a opção 3 é digitada.
