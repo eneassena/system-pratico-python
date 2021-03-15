@@ -1,4 +1,4 @@
-from cpt import *
+from cpt import create_key, create_key_voo
 
 class Reserva:
     _isnumeric_auto = 0
